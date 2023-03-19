@@ -1,3 +1,3 @@
 # Tutoriais do InfluxDB
 
-* start/: Tutoriais para provisionamento de um ambiente inicial do InfluxDB.
+* start/: Tutoriais sobre instalação e instruções iniciais sobre o InfluxDB.

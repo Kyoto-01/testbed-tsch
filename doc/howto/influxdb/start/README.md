@@ -1,3 +1,3 @@
 # Tutoriais do InfluxDB - Start
 
-Tutoriais para provisionamento de um ambiente inicial do InfluxDB.
+Tutoriais sobre instalação e instruções iniciais sobre o InfluxDB.
