@@ -1,48 +1,33 @@
-# Configurações iniciais do InfluxDB
+# Visualização de informações do InfluxDB
 
 
 ## Fontes
-* [Configurações iniciais](https://docs.influxdata.com/influxdb/v2.0/install/?t=CLI+Setup)
 * [Visualização de tokens](https://docs.influxdata.com/influxdb/v2.0/security/tokens/view-tokens/)
-* [Visualização de tokens pela linha de comando](https://docs.influxdata.com/influxdb/v2.0/security/tokens/view-tokens/)
 
-<br>
-
-## Setup
-
-```
-influx setup
-```
-
-* Depois, basta preencher o que se pede.
-* Após o preenchimento das opções, o InfluxDB criará um usuário inicial e um perfil de configuração.
-
-<br>
-
-## Visialização de perfis de configuração
+## 1. Visualização de perfis de configuração
 
 ```
 influx config list
 ```
 
-<br>
+## 2. Visualização de tokens de API
 
-## Visualização de tokens de API
+Para executar algumas ações por meio da API InfluxDB HTTP, o usuário precisará informar o Token de API, criado durante o setup do InfluxDB.
 
-Para a execução de algumas ações no terminal, o usuário precisará informar o Token de API, também criado durante o setup. Há três formas de visualizar tal informação:
+### 2.1 Visualização de tokens de API pela GUI
+* Acessar a URL ```http://<influxdb_server_ip>:8086```
+* Fazer login
+* Selecionar "Load Data-&gt;API Tokens" no menu à esquerda
+* Será apresentada uma lista de tokens
 
-* Pela interface gráfica:
-	* Acessar a URL &lt;endereco-do-servidor-influxdb&gt;:8086
-	* Fazer login
-	* No menu à esquerda selecione "Load Data-&gt;API Tokens"
-	* Será apresentada uma lista de tokens
-
-* Pelo prompt de comando:
+### 2.2 Visualização de tokens de API pelo prompt de comando:
 ```
 influx auth list
 ```
 
-* Pela API do InfluxDB
-	* GET /api/v2/authorizations
+### 2.3 Visualização de tokens de API pela API do InfluxDB
+```
+GET /api/v2/authorizations
+```
 
 
