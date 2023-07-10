@@ -59,6 +59,8 @@ echo 'ATTRS{idVendor}=="0451", ATTRS{idProduct}=="16c8", ENV{ID_MM_DEVICE_IGNORE
 
 source ~/.profile
 
+cd -
+
 ## Install Docker dependency
 
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -88,6 +90,21 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 source ~/.bashrc
 
 nvm install node
+
+## Install InfluxDB dependency
+
+wget -q https://repos.influxdata.com/influxdata-archive_compat.key
+
+echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c influxdata-archive_compat.key' | \
+	sha256sum -c && cat influxdata-archive_compat.key | gpg --dearmor | \
+	sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null
+
+echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main' | \
+	sudo tee /etc/apt/sources.list.d/influxdata.list
+
+sudo apt update && sudo apt install -y influxdb2
+
+sudo systemctl start influxd
 
 # Create testbed structure
 
@@ -145,3 +162,6 @@ source testbed-tsch-data-analysis-api/bin/activate
 python3 -m pip install -r ~/testbed-tsch/testbed-tsch-data-analysis-API/requirements.txt
 deactivate
 
+cd -
+C
+cd ~
