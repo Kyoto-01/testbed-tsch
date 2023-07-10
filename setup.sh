@@ -22,9 +22,9 @@ BACKEND_WEB_REPOSITORY="https://github.com/Kyoto-01/testbed-tsch-web.git"
 
 # Install dependencies
 
-apt update && apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 
-apt install -y \
+sudo apt install -y \
     build-essential \
     git \
     git-lfs \
@@ -35,7 +35,7 @@ apt install -y \
     ca-certificates \
     gnupg
 
-apt install -y \
+sudo apt install -y \
     python3-pip \
     python3-serial
 
@@ -54,26 +54,27 @@ tar -xjf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
 echo "if [ -d \"\$HOME/arm-compiler/gcc-arm-none-eabi-9-2020-q2-update/bin\" ] ; then \
 PATH=\"\$HOME/arm-compiler/gcc-arm-none-eabi-9-2020-q2-update/bin:\$PATH\"; fi" >> ~/.profile
 
-echo 'ATTRS{idVendor}=="0451", ATTRS{idProduct}=="16c8", ENV{ID_MM_DEVICE_IGNORE}="1"' >> /lib/udev/rules.d/77-mm-usb-device-blacklist.rules
+echo 'ATTRS{idVendor}=="0451", ATTRS{idProduct}=="16c8", ENV{ID_MM_DEVICE_IGNORE}="1"' | \
+	sudo tee -a /lib/udev/rules.d/77-mm-usb-device-blacklist.rules > /dev/null
 
 source ~/.profile
 
 ## Install Docker dependency
 
-install -m 0755 -d /etc/apt/keyrings
+sudo install -m 0755 -d /etc/apt/keyrings
 
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
-chmod a+r /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
 echo \
   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-apt update
+sudo apt update
 
-apt install -y \
+sudo apt install -y \
 	docker-ce \
 	docker-ce-cli \
 	containerd.io \
