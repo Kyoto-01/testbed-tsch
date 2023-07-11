@@ -162,3 +162,5 @@ source testbed-tsch-data-analysis-api/bin/activate
 python3 -m pip install -r ~/testbed-tsch/testbed-tsch-data-analysis-API/requirements.txt
 deactivate
 
+cd -
+
