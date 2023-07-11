@@ -77,6 +77,32 @@ Onde:
 
 * **token**: Token de API do InfluxDB.
 
+### Configuração do módulo Analysis RPC Client
+
+* Entre no repositório do módulo Analysis RPC Client e crie um arquivo de configuração à partir do template `config.example.ini`:
+
+```
+cd testbed-tsch-rpc-client/
+```
+
+```
+cp config.example.ini config.ini
+```
+
+* Preencha da seguinte maneira o arquivo de configuração criado:
+
+```ini
+[rpc_client]
+api_addr=<addr>
+api_port=<port>
+```
+
+Onde: 
+
+* **api_addr**: Endereço onde o módulo Analysis API ouve (configure `localhost` por padrão).
+
+* **api_port**: Porta usada pelo módulo Analysis API (configure `5000` por padrão).
+
 ### Configuração do módulo Control Entity
 
 * Entre no repositório do módulo Control Entity e crie um arquivo de configuração à partir do template `config.example.ini`:
@@ -105,3 +131,62 @@ Onde:
 * **port**: Porta do broker RabbitMQ (configure `5672` por padrão).
 
 * **queue**: Fila do broker da qual o módulo receberá mensagens (configure `testbed-control` por padrão).
+
+### Configuração do módulo Control Bridge
+
+* Entre no repositório do módulo Control Bridge e crie um arquivo de configuração à partir do template `config.example.ini`:
+
+```
+cd testbed-tsch-control-bridge/
+```
+
+```
+cp config.example.ini config.ini
+```
+
+* Preencha da seguinte maneira o arquivo de configuração criado:
+
+```ini
+[api]
+addr=<addr>
+port=<port>
+
+[broker]
+addr=<addr>
+port=<port>
+queue=<queue>
+```
+
+Onde, as configurações da API e do broker são similares as feitas nos módulos `Analysis RPC Client` e `Control Entity`, respectivamente.
+
+**_OBS_**: A fila configurada em `queue` deve ser exatamente a mesma que foi configurada para o módulo `Control Entity`.
+
+### Configuração do módulo Analysis API
+
+* Entre no repositório do módulo Control Entity e crie um arquivo de configuração à partir do template `config.example.ini`:
+
+```
+cd testbed-tsch-control-entity/
+```
+
+```
+cp config.example.ini config.ini
+```
+
+* Preencha da seguinte maneira o arquivo de configuração criado:
+
+```ini
+[broker]
+addr=<address>
+port=<port>
+queue=<queue>
+```
+
+Onde: 
+
+* **addr**: Endereço do broker RabbitMQ (configure `localhost` por padrão).
+
+* **port**: Porta do broker RabbitMQ (configure `5672` por padrão).
+
+* **queue**: Fila do broker da qual o módulo receberá mensagens (configure `testbed-control` por padrão).
+
